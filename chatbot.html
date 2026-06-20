@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Assistant</title>
+
+    <!-- IMPORTANT: your main CSS -->
+    <link rel="stylesheet" href="common.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR (same as dashboard) -->
+<div class="sidebar">
+
+    <div class="logo">
+        🌾 AGRI AI
+    </div>
+
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="crop.html">🌱 Crop Advisor</a>
+    <a href="disease.html">🍃 Disease Scanner</a>
+    <a href="weather.html">☁ Weather Center</a>
+    <a href="analytics.html">📊 Analytics</a>
+    <a href="history.html">📜 History</a>
+    <a href="chatbot.html">🤖 AI Assistant</a>
+
+</div>
+
+<!-- MAIN AREA -->
+<div class="main">
+
+    <h1>🌾 AI Agriculture Assistant</h1>
+
+    <div class="section">
+
+        <!-- CHAT BOX (now uses your global CSS) -->
+        <div class="chat-box" id="chatBox"></div>
+
+        <input type="text" id="userInput" placeholder="Ask something...">
+
+        <button onclick="sendMessage()">Send</button>
+
+    </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const inputBox = document.getElementById("userInput");
+    const chat = document.getElementById("chatBox");
+
+    window.sendMessage = function () {
+
+        let input = inputBox.value.trim();
+        if (input === "") return;
+
+        // USER MESSAGE
+        chat.innerHTML += `
+            <div class="message user">
+                ${input}
+            </div>
+        `;
+
+        inputBox.value = "";
+
+        // BOT MESSAGE
+        chat.innerHTML += `
+            <div class="message bot">
+                🤖 Typing...
+            </div>
+        `;
+
+        let bots = document.querySelectorAll(".bot");
+        let lastBot = bots[bots.length - 1];
+
+        setTimeout(() => {
+            lastBot.innerHTML = getAIResponse(input.toLowerCase());
+            chat.scrollTop = chat.scrollHeight;
+        }, 1000);
+
+        chat.scrollTop = chat.scrollHeight;
+    };
+
+    function getAIResponse(question) {
+
+        if (question.includes("rice")) return "🌾 Rice grows well in clay soil.";
+        if (question.includes("cotton")) return "🌱 Cotton grows in black soil.";
+        if (question.includes("fertilizer")) return "🧪 Use NPK fertilizer.";
+        if (question.includes("irrigation")) return "💧 Irrigate morning/evening.";
+        if (question.includes("rain")) return "☁ Check weather first.";
+        if (question.includes("disease")) return "🍃 Use Disease Scanner.";
+        if (question.includes("soil")) return "🌍 Soil testing is important.";
+        if (question.includes("weather")) return "🌦 Monitor weather daily.";
+        if (question.includes("hello") || question.includes("hi")) return "👨‍🌾 Hello Farmer!";
+
+        return "🤖 I can help with crops, soil, irrigation, weather.";
+    }
+
+});
+</script>
+
+</body>
+</html>

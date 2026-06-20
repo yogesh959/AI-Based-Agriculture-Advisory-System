@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crop Advisor</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">🌾 AGRI AI</div>
+    <select id="language">
+        <option>English</option>
+        <option>Hindi</option>
+        <option>Telugu</option>
+    </select>
+
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="crop.html">🌱 Crop Advisor</a>
+    <a href="disease.html">🍃 Disease Scanner</a>
+    <a href="weather.html">☁ Weather Center</a>
+    <a href="analytics.html">📊 Analytics</a>
+    <a href="history.html">📜 History</a>
+    <a href="chatbot.html">🤖 AI Assistant</a>
+
+</div>
+
+<div class="main">
+
+    <h1>🌱 Crop Recommendation Engine</h1>
+    <br>
+
+    <div class="crop-container">
+
+        <!-- Input Form -->
+
+        <div class="card">
+
+            <h2>Farm Details</h2>
+            <br>
+
+            <input type="number" id="n" placeholder="Nitrogen (N)">
+            <input type="number" id="p" placeholder="Phosphorus (P)">
+            <input type="number" id="k" placeholder="Potassium (K)">
+            <input type="number" id="temp" placeholder="Temperature">
+            <input type="number" id="humidity" placeholder="Humidity">
+            <input type="number" id="ph" placeholder="pH Value">
+            <input type="number" id="rainfall" placeholder="Rainfall">
+
+            <button onclick="predictCrop()">
+                Predict Crop
+            </button>
+
+        </div>
+
+        <!-- Result Card -->
+
+        <div class="card result-card">
+
+            <h2>AI Recommendation</h2>
+
+            <div id="result">
+
+                <h1>🌾 Rice</h1>
+
+                <br>
+
+                <p>Confidence: 96%</p>
+
+                <br>
+
+                <p>
+                    Suitable due to current
+                    temperature and rainfall.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Previous Predictions</h2>
+
+        <br>
+
+        <table width="100%">
+            <tr>
+                <th>Date</th>
+                <th>Crop</th>
+                <th>Confidence</th>
+            </tr>
+
+            <tr>
+                <td>20-06-2026</td>
+                <td>Rice</td>
+                <td>96%</td>
+            </tr>
+
+            <tr>
+                <td>18-06-2026</td>
+                <td>Maize</td>
+                <td>92%</td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+<script src="js/crop.js"></script>
+
+<script type="module" src="js/firebase-config.js"></script>
+<script src="js/language.js"></script>
+</body>
+</html>

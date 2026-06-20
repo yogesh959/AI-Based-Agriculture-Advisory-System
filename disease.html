@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disease Scanner</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">🌾 AGRI AI</div>
+    <select id="language">
+        <option>English</option>
+        <option>Hindi</option>
+        <option>Telugu</option>
+    </select>
+
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="crop.html">🌱 Crop Advisor</a>
+    <a href="disease.html">🍃 Disease Scanner</a>
+    <a href="weather.html">☁ Weather Center</a>
+    <a href="analytics.html">📊 Analytics</a>
+    <a href="history.html">📜 History</a>
+    <a href="chatbot.html">🤖 AI Assistant</a>
+
+</div>
+
+<div class="main">
+
+    <h1>🍃 AI Disease Scanner</h1>
+
+    <br>
+
+    <div class="disease-layout">
+
+        <!-- Upload Section -->
+
+        <div class="card">
+
+            <h2>Upload Leaf Image</h2>
+
+            <br>
+
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*"
+                onchange="previewImage(event)"
+            >
+
+            <br><br>
+
+            <img
+                id="preview"
+                width="100%"
+                style="display:none;border-radius:15px;"
+            >
+
+            <br><br>
+
+            <button onclick="analyzeImage()">
+                Analyze Image
+            </button>
+
+        </div>
+
+        <!-- Result -->
+
+        <div class="card">
+
+            <h2>Disease Analysis</h2>
+
+            <br>
+
+            <div id="analysisResult">
+
+                <h1>🌿 Waiting For Scan</h1>
+
+                <br>
+
+                <p>Upload a leaf image to begin.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Recommended Treatment</h2>
+
+        <br>
+
+        <div id="treatment">
+
+            <p>No treatment recommendation yet.</p>
+
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Recent Scans</h2>
+
+        <br>
+
+        <table width="100%">
+            <tr>
+                <th>Date</th>
+                <th>Disease</th>
+                <th>Severity</th>
+            </tr>
+
+            <tr>
+                <td>20-06-2026</td>
+                <td>Tomato Early Blight</td>
+                <td>Medium</td>
+            </tr>
+
+            <tr>
+                <td>18-06-2026</td>
+                <td>Healthy Leaf</td>
+                <td>Low</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="js/disease.js"></script>
+
+<script type="module" src="js/firebase-config.js"></script>
+<script src="js/language.js"></script>
+</body>
+</html>

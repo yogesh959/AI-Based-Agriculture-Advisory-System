@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgriAI Dashboard</title>
+
+    <link rel="stylesheet" href="common.css">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+            🌾 AGRI AI
+        </div>
+
+        <select id="language">
+            <option>English</option>
+            <option>Hindi</option>
+            <option>Telugu</option>
+        </select>
+
+        <a href="index.html">🏠 Dashboard</a>
+        <a href="crop.html">🌱 Crop Advisor</a>
+        <a href="disease.html">🍃 Disease Scanner</a>
+        <a href="weather.html">☁ Weather Center</a>
+        <a href="analytics.html">📊 Analytics</a>
+        <a href="history.html">📜 History</a>
+        <a href="chatbot.html">🤖 AI Assistant</a>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+        <h1>Welcome Yogesh 👨‍🌾</h1>
+
+        <p>Smart Agriculture Monitoring Dashboard</p>
+
+        <br>
+
+        <!-- TOP CARDS -->
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>🌦 Weather</h3>
+                <h2>31°C</h2>
+                <p>Humidity : 78%</p>
+                <p>Rain Chance : 60%</p>
+            </div>
+
+            <div class="card">
+                <h3>🌱 Recommended Crop</h3>
+                <h2>Rice</h2>
+                <p>Confidence : 96%</p>
+            </div>
+
+            <div class="card">
+                <h3>⚠ Disease Risk</h3>
+                <h2>Medium</h2>
+                <p>Monitor Leaf Health</p>
+            </div>
+
+            <div class="card">
+                <h3>💚 Farm Health</h3>
+                <h2>82/100</h2>
+                <p>Healthy Conditions</p>
+            </div>
+
+        </div>
+
+        <br>
+
+        <!-- QUICK ACTIONS -->
+
+        <div class="section">
+
+            <h2>⚡ Quick Actions</h2>
+
+            <br>
+
+            <button onclick="location.href='crop.html'">🌱 Predict Crop</button>
+            <button onclick="location.href='disease.html'">🍃 Scan Disease</button>
+            <button onclick="location.href='weather.html'">☁ View Weather</button>
+
+        </div>
+
+        <br>
+
+        <!-- AI RECOMMENDATIONS -->
+
+        <div class="section">
+
+            <h2>🤖 AI Recommendations</h2>
+
+            <br>
+
+            <p>🌱 Rice is the most suitable crop for current conditions.</p>
+            <br>
+            <p>☁ Heavy rainfall expected tomorrow.</p>
+            <br>
+            <p>💧 Avoid irrigation for the next 24 hours.</p>
+            <br>
+            <p>🍃 No major disease symptoms detected.</p>
+
+        </div>
+
+        <br>
+
+        <!-- ALERTS -->
+
+        <div class="section">
+
+            <h2>🚨 Active Alerts</h2>
+
+            <br>
+
+            <p>🟡 Moderate Disease Risk</p>
+            <br>
+            <p>🔴 Heavy Rainfall Expected</p>
+            <br>
+            <p>🟢 Soil Conditions Suitable</p>
+
+        </div>
+
+        <br>
+
+        <!-- RECENT ACTIVITIES -->
+
+        <div class="section">
+
+            <h2>📜 Recent Activities</h2>
+
+            <br>
+
+            <table width="100%">
+
+                <tr>
+                    <th>Date</th>
+                    <th>Activity</th>
+                    <th>Result</th>
+                </tr>
+
+                <tr>
+                    <td>20-06-2026</td>
+                    <td>Crop Prediction</td>
+                    <td>Rice</td>
+                </tr>
+
+                <tr>
+                    <td>20-06-2026</td>
+                    <td>Disease Scan</td>
+                    <td>Healthy Leaf</td>
+                </tr>
+
+                <tr>
+                    <td>19-06-2026</td>
+                    <td>Weather Alert</td>
+                    <td>Heavy Rainfall</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- SAFE SCRIPT LOADING (prevents deployment crash) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const lang = document.getElementById("language");
+
+            if (lang) {
+                lang.addEventListener("change", function () {
+                    console.log("Language selected:", lang.value);
+                });
+            }
+
+        });
+    </script>
+
+    <script type="module" src="js/firebase-config.js"></script>
+    <script src="js/language.js"></script>
+
+</body>
+
+</html>

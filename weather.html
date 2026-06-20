@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Center</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">🌾 AGRI AI</div>
+    <select id="language">
+    <option>English</option>
+    <option>Hindi</option>
+    <option>Telugu</option>
+</select>
+
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="crop.html">🌱 Crop Advisor</a>
+    <a href="disease.html">🍃 Disease Scanner</a>
+    <a href="weather.html">☁ Weather Center</a>
+    <a href="analytics.html">📊 Analytics</a>
+    <a href="history.html">📜 History</a>
+    <a href="chatbot.html">🤖 AI Assistant</a>
+
+</div>
+
+<div class="main">
+
+    <h1>☁ Weather Intelligence Center</h1>
+
+    <br>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>🌡 Temperature</h3>
+            <h2>31°C</h2>
+        </div>
+
+        <div class="card">
+            <h3>💧 Humidity</h3>
+            <h2>78%</h2>
+        </div>
+
+        <div class="card">
+            <h3>🌧 Rain Chance</h3>
+            <h2>60%</h2>
+        </div>
+
+        <div class="card">
+            <h3>💨 Wind Speed</h3>
+            <h2>12 km/h</h2>
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h2>📅 7-Day Forecast</h2>
+
+        <br>
+
+        <table width="100%">
+            <tr>
+                <th>Day</th>
+                <th>Weather</th>
+                <th>Temp</th>
+                <th>Rain</th>
+            </tr>
+
+            <tr>
+                <td>Mon</td>
+                <td>🌦</td>
+                <td>30°C</td>
+                <td>65%</td>
+            </tr>
+
+            <tr>
+                <td>Tue</td>
+                <td>☀</td>
+                <td>32°C</td>
+                <td>20%</td>
+            </tr>
+
+            <tr>
+                <td>Wed</td>
+                <td>🌧</td>
+                <td>29°C</td>
+                <td>80%</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <div class="section">
+
+        <h2>🤖 AI Weather Advisory</h2>
+
+        <br>
+
+        <div id="weatherAdvice">
+
+            <p>⚠ Heavy rainfall expected in next 24 hours.</p>
+            <br>
+            <p>✅ Avoid irrigation today.</p>
+            <br>
+            <p>✅ Monitor crop drainage system.</p>
+
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h2>🚨 Weather Alerts</h2>
+
+        <br>
+
+        <p>🔴 High Rainfall Warning</p>
+        <p>🟡 Moderate Wind Conditions</p>
+        <p>🟢 Suitable Temperature For Rice</p>
+
+    </div>
+
+</div>
+
+<script src="js/weather.js"></script>
+
+<script type="module" src="js/firebase-config.js"></script>
+<script src="js/language.js"></script>
+</body>
+</html>
