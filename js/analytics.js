@@ -1,97 +1,185 @@
-const cropChart = new Chart(document.getElementById("cropChart"), {
+(function () {
+    "use strict";
 
-    type: "bar",
+    const API_URL = "http://localhost:5000";
+    let cropChart;
+    let activityChart;
 
-    data: {
-        labels: ["Rice", "Maize", "Cotton", "Sugarcane"],
-        datasets: [{
-            label: "Crop Recommendations",
-            data: [40, 25, 20, 15],
-            borderWidth: 1
-        }]
-    },
+    document.addEventListener("DOMContentLoaded", loadAnalytics);
 
-    options: {
+    async function loadAnalytics() {
+        let cropEntries = [];
+        let imageEntries = [];
 
-        responsive: true,
+        try {
+            const [cropResponse, imageResponse] = await Promise.all([
+                fetch(`${API_URL}/history?limit=100&type=crop`),
+                fetch(`${API_URL}/history?limit=100&type=image`)
+            ]);
+            if (cropResponse.ok) cropEntries = (await cropResponse.json()).history || [];
+            if (imageResponse.ok) imageEntries = (await imageResponse.json()).history || [];
+        } catch (error) {
+            console.warn("Analytics history unavailable:", error);
+        }
 
-        maintainAspectRatio: false,
+        const localActivities = window.AgriActivityLog ? window.AgriActivityLog.read() : [];
+        const weatherCount = localActivities.filter((item) => item.type === "weather").length;
+        const chatCount = localActivities.filter((item) => item.type === "chat").length;
 
-        plugins: {
-            legend: {
-                labels: {
-                    color: "white"
-                }
-            }
-        },
+        document.getElementById("cropCount").textContent = cropEntries.length;
+        document.getElementById("diseaseCount").textContent = imageEntries.length;
+        document.getElementById("weatherCount").textContent = weatherCount;
+        document.getElementById("chatCount").textContent = chatCount;
 
-        scales: {
-            x: {
-                ticks: {
-                    color: "white"
-                }
+        document.getElementById("cropChange").textContent = cropEntries.length ? "Recorded" : "0";
+        document.getElementById("diseaseChange").textContent = imageEntries.length ? "Recorded" : "0";
+        document.getElementById("weatherChange").textContent = weatherCount ? "Recorded" : "0";
+        document.getElementById("chatChange").textContent = chatCount ? "Recorded" : "0";
+
+        renderCropChart(cropEntries);
+        renderActivityChart(cropEntries.length, imageEntries.length, weatherCount, chatCount);
+        renderActivityTable(cropEntries, imageEntries, localActivities);
+        document.getElementById("analyticsUpdated").textContent =
+            cropEntries.length || imageEntries.length || localActivities.length
+                ? "Updated from recent activity"
+                : "No activity recorded";
+    }
+
+    function renderCropChart(entries) {
+        const counts = {};
+        entries.forEach((entry) => {
+            const crop = getField(entry.answer, "Recommended crop:");
+            counts[crop] = (counts[crop] || 0) + 1;
+        });
+
+        const labels = Object.keys(counts);
+        const values = Object.values(counts);
+        const canvas = document.getElementById("cropChart");
+
+        cropChart = new Chart(canvas, {
+            type: "bar",
+            data: {
+                labels: labels.length ? labels : ["No predictions"],
+                datasets: [{
+                    label: "Recommendations",
+                    data: values.length ? values : [0],
+                    backgroundColor: "#16a34a",
+                    borderRadius: 8,
+                    barThickness: 28
+                }]
             },
-            y: {
-                ticks: {
-                    color: "white"
-                }
-            }
-        }
+            options: chartOptions()
+        });
     }
 
-});
-
-const diseaseChart = new Chart(document.getElementById("diseaseChart"), {
-
-    type: "doughnut",
-
-    data: {
-        labels: ["Healthy", "Early Blight", "Late Blight"],
-        datasets: [{
-            data: [60, 25, 15]
-        }]
-    },
-
-    options: {
-
-        responsive: true,
-
-        maintainAspectRatio: false,
-
-        plugins: {
-            legend: {
-                labels: {
-                    color: "white"
+    function renderActivityChart(crops, disease, weather, chat) {
+        const canvas = document.getElementById("activityChart");
+        activityChart = new Chart(canvas, {
+            type: "doughnut",
+            data: {
+                labels: ["Crop", "Disease", "Weather", "AI chat"],
+                datasets: [{
+                    data: [crops, disease, weather, chat],
+                    backgroundColor: ["#16a34a", "#38bdf8", "#f59e0b", "#8b5cf6"],
+                    borderWidth: 4,
+                    borderColor: "#ffffff",
+                    hoverOffset: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: "68%",
+                plugins: {
+                    legend: {
+                        position: "bottom",
+                        labels: { color: "#64748b", boxWidth: 10, usePointStyle: true, padding: 16 }
+                    }
                 }
             }
-        }
+        });
     }
 
-});
+    function renderActivityTable(cropEntries, imageEntries, localActivities) {
+        const rows = [];
 
-document.addEventListener("agri-language-change", function (event) {
-    const labels = {
-        English: {
-            cropDataset: "Crop Recommendations",
-            crops: ["Rice", "Maize", "Cotton", "Sugarcane"],
-            diseases: ["Healthy", "Early Blight", "Late Blight"]
-        },
-        Hindi: {
-            cropDataset: "फसल सिफारिशें",
-            crops: ["धान", "मक्का", "कपास", "गन्ना"],
-            diseases: ["स्वस्थ", "अगेती झुलसा", "पछेती झुलसा"]
-        },
-        Telugu: {
-            cropDataset: "పంట సిఫార్సులు",
-            crops: ["వరి", "మొక్కజొన్న", "పత్తి", "చెరకు"],
-            diseases: ["ఆరోగ్యకరం", "ఎర్లీ బ్లైట్", "లేట్ బ్లైట్"]
+        cropEntries.forEach((entry) => rows.push({
+            date: entry.created_at,
+            module: "Crop prediction",
+            result: getField(entry.answer, "Recommended crop:")
+        }));
+        imageEntries.forEach((entry) => rows.push({
+            date: entry.created_at,
+            module: "Disease scan",
+            result: entry.image_name || "Image analysis completed"
+        }));
+        localActivities.forEach((entry) => rows.push({
+            date: entry.createdAt,
+            module: entry.title,
+            result: entry.result
+        }));
+
+        rows.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const tableBody = document.getElementById("analyticsActivityRows");
+        tableBody.replaceChildren();
+
+        if (!rows.length) {
+            const row = document.createElement("tr");
+            const cell = document.createElement("td");
+            cell.colSpan = 3;
+            cell.textContent = "No activities yet. Use a farming tool to generate analytics.";
+            row.appendChild(cell);
+            tableBody.appendChild(row);
+            return;
         }
-    };
-    const selectedLabels = labels[event.detail.language] || labels.English;
 
-    cropChart.data.labels = selectedLabels.crops;
-    cropChart.data.datasets[0].label = selectedLabels.cropDataset;
-    diseaseChart.data.labels = selectedLabels.diseases;
-    cropChart.update();
-    diseaseChart.update();
-});
+        rows.slice(0, 12).forEach((entry) => {
+            const row = document.createElement("tr");
+            [formatDate(entry.date), entry.module, entry.result].forEach((value) => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+            tableBody.appendChild(row);
+        });
+    }
+
+    function chartOptions() {
+        return {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: { backgroundColor: "#0f172a", padding: 10 }
+            },
+            scales: {
+                x: {
+                    grid: { display: false },
+                    border: { display: false },
+                    ticks: { color: "#64748b", font: { family: "Manrope", size: 11 } }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: { precision: 0, color: "#94a3b8", font: { family: "Manrope", size: 11 } },
+                    grid: { color: "#eef2f7" },
+                    border: { display: false }
+                }
+            }
+        };
+    }
+
+    function getField(answer, fieldName) {
+        const line = String(answer || "").split(/\r?\n/)
+            .find((value) => value.startsWith(fieldName));
+        return line ? line.slice(fieldName.length).trim() : "Not available";
+    }
+
+    function formatDate(value) {
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return "Recently";
+        return date.toLocaleString([], {
+            day: "2-digit", month: "short", year: "numeric",
+            hour: "2-digit", minute: "2-digit"
+        });
+    }
+})();

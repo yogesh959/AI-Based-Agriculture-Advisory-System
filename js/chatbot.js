@@ -114,6 +114,13 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = await response.json();
             if (!response.ok) throw new Error(data.answer || "The request could not be completed.");
             botBubble.querySelector(".message-copy").textContent = data.answer || "Sorry, I could not get an answer.";
+            if (window.AgriActivityLog) {
+                window.AgriActivityLog.record({
+                    type: "chat",
+                    title: "AI assistant",
+                    result: imageFile ? "Photo analysis completed" : "Recommendation received"
+                });
+            }
         } catch (error) {
             console.error(error);
             botBubble.querySelector(".message-copy").textContent = error.message || "Could not reach the AI assistant. Check that the server is running and try again.";

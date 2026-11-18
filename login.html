@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriVision AI - Login</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body class="login-page">
+    <main class="login-card">
+        <a class="login-brand" href="index.html">
+            <span class="logo-mark">🌾</span>
+            <span>AgriVision AI</span>
+        </a>
+        <span class="account-eyebrow">WELCOME BACK</span>
+        <h1>Sign in to your farm</h1>
+        <p class="login-description">Continue to your farming dashboard.</p>
+
+        <form id="loginForm">
+            <label for="loginEmail">Email address</label>
+            <input id="loginEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <button type="submit" class="account-save-button">Continue to dashboard <span aria-hidden="true">→</span></button>
+        </form>
+
+        <p class="login-demo-notice">Demo sign-in only. This screen does not authenticate users.</p>
+        <p id="loginStatus" role="status" aria-live="polite"></p>
+    </main>
+    <script src="js/login.js"></script>
+</body>
+</html>

@@ -115,140 +115,42 @@ async function predictCrop(){
 
 
     document.getElementById("result").innerHTML = `
-
-
-
 <div class="ai-header">
-
-<span>
-🤖
-</span>
-
-<h2>
-AI Crop Recommendation
-</h2>
-
+    <div>
+        <span class="result-eyebrow">RECOMMENDATION</span>
+        <h2>Best crop for your farm</h2>
+    </div>
+    <span class="ai-status">AI</span>
 </div>
-
-
-
-
 
 <div class="crop-result">
-
-
-<div class="crop-icon">
-
-${emoji}
-
+    <div class="crop-icon">${emoji}</div>
+    <div class="crop-result-name">
+        <h1>${crop}</h1>
+        <p class="badge">Best Match</p>
+    </div>
 </div>
-
-
-<div>
-
-
-<h1>
-
-${crop}
-
-</h1>
-
-
-<p class="badge">
-
-Best Match
-
-</p>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
 
 <div class="confidence">
-
-
-<p>
-AI Confidence
-</p>
-
-
-<div class="progress">
-
-<div class="progress-fill" style="width:${confidence}%"></div>
-
+    <div class="confidence-heading">
+        <span>AI confidence</span>
+        <strong>${confidence}%</strong>
+    </div>
+    <div class="progress">
+        <div class="progress-fill" style="width:${confidence}%"></div>
+    </div>
 </div>
-
-
-<h3>
-
-${confidence}%
-
-</h3>
-
-
-</div>
-
-
-
-
-
-
 
 <div class="reason-box">
-
-
-<h3>
-💡 Why this crop?
-</h3>
-
-
-<p>
-
-${reason}
-
-</p>
-
-
-<br>
-
-
-<p>
-📍 Location:
-${location}
-</p>
-
-
-<p>
-🌍 Soil:
-${soil}
-</p>
-
-
-<p>
-💧 Water:
-${water}
-</p>
-
-
-<p>
-🌦 Season:
-${season}
-</p>
-
-
-</div>
-
-
-
-`;
+    <h3>Why this crop?</h3>
+    <p>${reason}</p>
+    <div class="farm-condition-list">
+        <span>📍 ${location}</span>
+        <span>🌍 ${soil}</span>
+        <span>💧 ${water} water</span>
+        <span>🌦 ${season}</span>
+    </div>
+</div>`;
 
     const saveStatus = document.createElement("p");
     saveStatus.setAttribute("role", "status");

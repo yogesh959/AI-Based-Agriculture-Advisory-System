@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriVision AI - Account</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body class="account-page">
+
+<div class="sidebar">
+    <a class="logo" href="index.html" aria-label="Go to dashboard">
+        <span class="logo-mark">🌾</span>
+        <span>AgriVision AI</span>
+    </a>
+    <select id="language" aria-label="Language">
+        <option>English</option>
+        <option>Hindi</option>
+        <option>Telugu</option>
+    </select>
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="crop.html">🌱 Crop Intelligence</a>
+    <a href="disease.html">🍃 Disease Detection</a>
+    <a href="weather.html">🌦 Weather Insights</a>
+    <a href="analytics.html">📊 Analytics</a>
+    <a href="history.html">📜 Reports</a>
+    <a href="chatbot.html">🤖 AI Assistant</a>
+</div>
+
+<main class="main">
+    <header class="account-page-header">
+        <div>
+            <span class="account-eyebrow">PERSONAL SETTINGS</span>
+            <h1>Account details</h1>
+            <p>Manage your profile and farm information.</p>
+        </div>
+        <button class="account-logout-button" id="logoutButton" type="button">
+            <span aria-hidden="true">↪</span> Log out
+        </button>
+    </header>
+
+    <div class="account-layout">
+        <aside class="account-profile-card">
+            <div class="account-avatar" id="accountAvatar">YK</div>
+            <h2 id="accountName">Yogesh Kumar</h2>
+            <p id="accountRole">Farmer account</p>
+            <div class="account-status"><span></span> Profile active</div>
+        </aside>
+
+        <section class="account-details-card">
+            <div class="account-section-heading">
+                <div>
+                    <span>PROFILE</span>
+                    <h2>Personal information</h2>
+                </div>
+                <button class="account-edit-button" id="accountEditButton" type="button" hidden>Edit profile</button>
+            </div>
+
+            <div class="account-saved-details" id="accountSavedDetails" hidden>
+                <div class="account-detail-row"><span>Full name</span><strong id="savedFullName"></strong></div>
+                <div class="account-detail-row"><span>Email address</span><strong id="savedEmail"></strong></div>
+                <div class="account-detail-row"><span>Phone number</span><strong id="savedPhone"></strong></div>
+                <div class="account-detail-row"><span>Location</span><strong id="savedLocation"></strong></div>
+                <div class="account-detail-row"><span>Farm name</span><strong id="savedFarmName"></strong></div>
+            </div>
+            <p id="accountStatus" class="account-status-success" role="status" aria-live="polite"></p>
+
+            <form id="accountForm" hidden>
+                <div class="account-form-grid">
+                    <div class="account-field">
+                        <label for="fullName">Full name</label>
+                        <input type="text" id="fullName" name="fullName" maxlength="60" required>
+                    </div>
+                    <div class="account-field">
+                        <label for="email">Email address</label>
+                        <input type="email" id="email" name="email" maxlength="100" required>
+                    </div>
+                    <div class="account-field">
+                        <label for="phone">Phone number</label>
+                        <input type="tel" id="phone" name="phone" maxlength="20">
+                    </div>
+                    <div class="account-field">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location" maxlength="100">
+                    </div>
+                    <div class="account-field account-field-wide">
+                        <label for="farmName">Farm name</label>
+                        <input type="text" id="farmName" name="farmName" maxlength="100">
+                    </div>
+                </div>
+                <div class="account-form-actions">
+                    <button type="submit" class="account-save-button">Save changes</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
+
+<script src="js/activity-log.js"></script>
+<script src="js/account.js"></script>
+<script src="js/language.js"></script>
+</body>
+</html>

@@ -13,15 +13,16 @@
 </head>
 
 
-<body>
+<body class="crop-page">
 
 
 <div class="sidebar">
 
 
-<div class="logo">
-🌾 AgriVision AI
-</div>
+<a class="logo" href="index.html" aria-label="Go to dashboard">
+<span class="logo-mark">🌾</span>
+<span>AgriVision AI</span>
+</a>
 
 
 
@@ -40,7 +41,7 @@
 </a>
 
 
-<a href="crop.html">
+<a href="crop.html" class="active">
 🌱 Crop Intelligence
 </a>
 
@@ -68,9 +69,6 @@
 <a href="chatbot.html">
 🤖 AI Assistant
 </a>
-
-
-
 </div>
 
 
@@ -80,21 +78,21 @@
 <div class="main">
 
 
-<h1>
-🌱 AI Crop Advisor
-</h1>
+<header class="crop-page-header">
+    <div>
+        <span class="crop-eyebrow">SMART FARMING</span>
+        <h1>AI Crop Advisor</h1>
+        <p>Match your farm conditions with the most suitable crop.</p>
+    </div>
+    <div class="crop-header-badge">
+        <span>AI powered</span>
+        <strong>Crop analysis</strong>
+    </div>
+</header>
 
 
-<p>
-Get crop recommendations using simple farm information
-</p>
 
-
-<br>
-
-
-
-<div class="crop-container">
+<div class="crop-workspace">
 
 
 
@@ -103,24 +101,22 @@ Get crop recommendations using simple farm information
 <!-- FARM INPUT -->
 
 
-<div class="card">
+<div class="card crop-form-card">
 
 
-<h2>
-👨‍🌾 Farm Details
-</h2>
+<div class="crop-card-heading">
+    <div class="crop-card-icon">🌱</div>
+    <div>
+        <span>Step 1</span>
+        <h2>Farm details</h2>
+    </div>
+</div>
 
 
-<br>
-
-
-
-<label>
-🌍 Soil Type
-</label>
-
-
-<select id="soil">
+<div class="farm-form-grid">
+<div class="farm-field">
+<label for="soil">Soil type</label>
+<select id="soil" aria-label="Soil type">
 
 <option>Black Soil</option>
 <option>Red Soil</option>
@@ -129,49 +125,42 @@ Get crop recommendations using simple farm information
 <option>Loamy Soil</option>
 
 </select>
+</div>
 
 
-
-<label>
-💧 Water Availability
-</label>
-
-
-<select id="water">
+<div class="farm-field">
+<label for="water">Water availability</label>
+<select id="water" aria-label="Water availability">
 
 <option>High</option>
 <option>Medium</option>
 <option>Low</option>
 
 </select>
+</div>
 
 
 
 
 
-<label>
-🌦 Season
-</label>
-
-
-<select id="season">
+<div class="farm-field">
+<label for="season">Season</label>
+<select id="season" aria-label="Season">
 
 <option>Monsoon</option>
 <option>Summer</option>
 <option>Winter</option>
 
 </select>
+</div>
 
 
 
 
 
-<label>
-🌾 Previous Crop
-</label>
-
-
-<select id="previous">
+<div class="farm-field">
+<label for="previous">Previous crop</label>
+<select id="previous" aria-label="Previous crop">
 
 <option>Rice</option>
 <option>Cotton</option>
@@ -180,29 +169,28 @@ Get crop recommendations using simple farm information
 <option>Other</option>
 
 </select>
+</div>
 
 
 
 
 
-<label>
-📍 Village / Location
-</label>
-
-
-<input 
+<div class="farm-field farm-field-wide">
+<label for="location">Village or location</label>
+<input
 type="text"
 id="location"
-placeholder="Enter your village name"
+placeholder="Enter your village or city"
 >
+</div>
+</div>
 
 
 
 
-<button onclick="predictCrop()">
-
-🌱 Analyze Farm
-
+<button class="crop-analyze-button" onclick="predictCrop()">
+    <span>Analyze farm</span>
+    <span aria-hidden="true">→</span>
 </button>
 
 
@@ -226,15 +214,11 @@ placeholder="Enter your village name"
 
 
 <div class="ai-header">
-
-<span>
-🤖
-</span>
-
-<h2>
-AI Crop Recommendation
-</h2>
-
+    <div>
+        <span class="result-eyebrow">RECOMMENDATION</span>
+        <h2>Best crop for your farm</h2>
+    </div>
+    <span class="ai-status">AI</span>
 </div>
 
 
@@ -264,24 +248,13 @@ Best Match
 
 
 <div class="confidence">
-
-<p>
-AI Confidence
-</p>
-
-
-<div class="progress">
-
-<div class="progress-fill"></div>
-
-</div>
-
-
-<h3>
-94%
-</h3>
-
-
+    <div class="confidence-heading">
+        <span>AI confidence</span>
+        <strong>94%</strong>
+    </div>
+    <div class="progress">
+        <div class="progress-fill" style="width:94%"></div>
+    </div>
 </div>
 
 
@@ -289,9 +262,7 @@ AI Confidence
 
 <div class="reason-box">
 
-<h3>
-💡 Why this crop?
-</h3>
+<h3>Why this crop?</h3>
 
 
 <p>

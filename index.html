@@ -13,16 +13,17 @@
 </head>
 
 
-<body>
+<body class="dashboard-page">
 
 
 <!-- SIDEBAR -->
 
 <div class="sidebar">
 
-    <div class="logo">
-        🌾 AgriVision AI
-    </div>
+    <a class="logo" href="index.html" aria-label="Go to dashboard">
+        <span class="logo-mark">🌾</span>
+        <span>AgriVision AI</span>
+    </a>
 
 
     <select id="language">
@@ -68,9 +69,6 @@
     <a href="chatbot.html">
         🤖 AI Assistant
     </a>
-
-
-
 </div>
 
 
@@ -85,46 +83,21 @@
 <!-- HEADER -->
 
 
-<div class="top-header">
-
-
+<header class="dashboard-header">
     <div>
-
-        <h1>
-            Welcome back, Yogesh 👨‍🌾
-        </h1>
-
-        <p>
-            Smart farming intelligence powered by AI
-        </p>
-
+        <span class="dashboard-eyebrow">TODAY'S FARM OVERVIEW</span>
+        <h1><span id="dashboardWelcomeName">Welcome back, Yogesh</span> <span aria-hidden="true">👨‍🌾</span></h1>
+        <p>Smart farming intelligence powered by AI</p>
     </div>
-
-
-
-    <div class="profile">
-
-
-        🔔
-
-
+    <div class="dashboard-profile">
+        <span class="notification-button" aria-hidden="true">🔔<span></span></span>
+        <div class="profile-avatar" id="dashboardProfileAvatar">YK</div>
         <div>
-
-            <b>
-                Farmer Account
-            </b>
-
-            <p>
-                AgriVision User
-            </p>
-
+            <a class="dashboard-profile-name" id="dashboardProfileName" href="account.html">Farmer Account</a>
+            <p id="dashboardProfileEmail">AgriVision User</p>
         </div>
-
-
     </div>
-
-
-</div>
+</header>
 
 
 
@@ -133,91 +106,67 @@
 <!-- OVERVIEW CARDS -->
 
 
-<div class="cards">
+<div class="cards dashboard-metrics">
 
 
-<div class="card">
-
-<h3>
-🌦 Weather
-</h3>
-
-<h2>
-31°C
-</h2>
-
-<p>
-Humidity: 78%
-</p>
-
-<p>
-Rain Probability: 60%
-</p>
-
+<div class="card dashboard-metric metric-weather">
+    <div class="metric-heading">
+        <span class="metric-icon">🌦</span>
+        <span class="metric-trend">Live</span>
+    </div>
+    <h3>Weather</h3>
+    <h2>31°C</h2>
+    <div class="metric-details">
+        <span>Humidity <strong>78%</strong></span>
+        <span>Rain <strong>60%</strong></span>
+    </div>
 </div>
 
 
 
 
 
-<div class="card">
-
-<h3>
-🌱 Crop Intelligence
-</h3>
-
-<h2>
-Rice
-</h2>
-
-<p>
-Confidence: 96%
-</p>
-
-<p>
-Suitable Crop
-</p>
-
+<div class="card dashboard-metric metric-crop">
+    <div class="metric-heading">
+        <span class="metric-icon">🌱</span>
+        <span class="metric-trend">Top match</span>
+    </div>
+    <h3>Crop Intelligence</h3>
+    <h2>Rice</h2>
+    <div class="metric-details">
+        <span>Confidence <strong>96%</strong></span>
+        <span>Suitable <strong>Yes</strong></span>
+    </div>
 </div>
 
 
 
 
 
-<div class="card">
-
-<h3>
-🍃 Disease Risk
-</h3>
-
-<h2>
-Low
-</h2>
-
-<p>
-Crop condition healthy
-</p>
-
+<div class="card dashboard-metric metric-disease">
+    <div class="metric-heading">
+        <span class="metric-icon">🍃</span>
+        <span class="metric-trend trend-good">Healthy</span>
+    </div>
+    <h3>Disease Risk</h3>
+    <h2>Low</h2>
+    <div class="metric-details">
+        <span>Crop condition <strong>Good</strong></span>
+    </div>
 </div>
 
 
 
 
 
-<div class="card">
-
-<h3>
-💚 Farm Health
-</h3>
-
-<h2>
-82%
-</h2>
-
-<p>
-Good Condition
-</p>
-
+<div class="card dashboard-metric metric-health">
+    <div class="metric-heading">
+        <span class="metric-icon">💚</span>
+        <span class="metric-trend trend-good">Good</span>
+    </div>
+    <h3>Farm Health</h3>
+    <h2>82%</h2>
+    <div class="metric-progress"><span style="width:82%"></span></div>
 </div>
 
 
@@ -232,46 +181,32 @@ Good Condition
 <!-- AI INSIGHTS -->
 
 
-<div class="section">
-
-
-<h2>
-🤖 AI Farming Insights
-</h2>
-
-
-<br>
-
-
-<p>
-🌱 Rice is recommended based on soil and weather conditions.
-</p>
-
-
-<br>
-
-
-<p>
-☁ Heavy rainfall expected tomorrow. Avoid unnecessary irrigation.
-</p>
-
-
-<br>
-
-
-<p>
-🍃 No major disease symptoms detected.
-</p>
-
-
-<br>
-
-
-<p>
-🧪 Maintain balanced fertilizer usage for better yield.
-</p>
-
-
+<div class="section dashboard-insights">
+    <div class="dashboard-section-heading">
+        <div>
+            <span>AI ADVISORY</span>
+            <h2>Farming insights</h2>
+        </div>
+        <span class="live-label"><i></i> Live</span>
+    </div>
+    <div class="insight-grid">
+        <article>
+            <span class="insight-icon">🌱</span>
+            <div><strong>Crop recommendation</strong><p>Rice is recommended based on soil and weather conditions.</p></div>
+        </article>
+        <article>
+            <span class="insight-icon">☁️</span>
+            <div><strong>Weather alert</strong><p>Heavy rainfall is expected tomorrow. Avoid unnecessary irrigation.</p></div>
+        </article>
+        <article>
+            <span class="insight-icon">🍃</span>
+            <div><strong>Plant health</strong><p>No major disease symptoms detected.</p></div>
+        </article>
+        <article>
+            <span class="insight-icon">🧪</span>
+            <div><strong>Nutrient care</strong><p>Maintain balanced fertilizer usage for better yield.</p></div>
+        </article>
+    </div>
 </div>
 
 
@@ -284,79 +219,49 @@ Good Condition
 <!-- QUICK ACTIONS -->
 
 
-<div class="section">
+<div class="section dashboard-actions">
+    <div class="dashboard-section-heading">
+        <div>
+            <span>SHORTCUTS</span>
+            <h2>Quick actions</h2>
+        </div>
+    </div>
+    <div class="cards dashboard-action-grid">
 
 
-<h2>
-⚡ Quick Actions
-</h2>
-
-
-
-<div class="cards">
-
-
-<div class="action-card"
-onclick="location.href='crop.html'">
-
-<h3>
-🌱 Crop Analysis
-</h3>
-
-<p>
-Predict suitable crops using AI
-</p>
-
-</div>
+<a class="action-card" href="crop.html">
+    <span class="action-icon">🌱</span>
+    <div><h3>Crop Analysis</h3><p>Predict suitable crops using AI</p></div>
+    <span class="action-arrow">→</span>
+</a>
 
 
 
 
-<div class="action-card"
-onclick="location.href='disease.html'">
-
-<h3>
-🍃 Disease Scanner
-</h3>
-
-<p>
-Detect crop diseases from images
-</p>
-
-</div>
+<a class="action-card" href="disease.html">
+    <span class="action-icon">🍃</span>
+    <div><h3>Disease Scanner</h3><p>Detect crop diseases from images</p></div>
+    <span class="action-arrow">→</span>
+</a>
 
 
 
 
 
-<div class="action-card"
-onclick="location.href='weather.html'">
-
-<h3>
-🌦 Weather
-</h3>
-
-<p>
-View farming weather insights
-</p>
-
-</div>
+<a class="action-card" href="weather.html">
+    <span class="action-icon">🌦</span>
+    <div><h3>Weather</h3><p>View farming weather insights</p></div>
+    <span class="action-arrow">→</span>
+</a>
 
 
 
 
-<div class="action-card"
-onclick="location.href='chatbot.html'">
-
-<h3>
-🤖 Ask AI
-</h3>
-
-<p>
-Get farming recommendations
-</p>
-
-</div>
+<a class="action-card" href="chatbot.html">
+    <span class="action-icon">🤖</span>
+    <div><h3>Ask AI</h3><p>Get farming recommendations</p></div>
+    <span class="action-arrow">→</span>
+</a>
 
 
 
@@ -375,91 +280,26 @@ Get farming recommendations
 <!-- RECENT ACTIVITY -->
 
 
-<div class="section">
-
-
-<h2>
-📜 Recent Activities
-</h2>
+<div class="section dashboard-recent">
+<div class="dashboard-section-heading">
+    <div>
+        <span>ACTIVITY LOG</span>
+        <h2>Recent activities</h2>
+    </div>
+</div>
 
 
 <table>
-
-
+<thead>
 <tr>
-
-<th>
-Date
-</th>
-
-<th>
-Activity
-</th>
-
-<th>
-Result
-</th>
-
-
+<th>Date</th>
+<th>Activity</th>
+<th>Result</th>
 </tr>
-
-
-
-<tr>
-
-<td>
-20-06-2026
-</td>
-
-<td>
-Crop Prediction
-</td>
-
-<td>
-Rice
-</td>
-
-</tr>
-
-
-
-
-<tr>
-
-<td>
-20-06-2026
-</td>
-
-<td>
-Disease Scan
-</td>
-
-<td>
-Healthy Leaf
-</td>
-
-</tr>
-
-
-
-
-<tr>
-
-<td>
-19-06-2026
-</td>
-
-<td>
-Weather Alert
-</td>
-
-<td>
-Heavy Rain
-</td>
-
-</tr>
-
-
+</thead>
+<tbody id="dashboardActivityRows">
+<tr><td colspan="3">Loading recent activities...</td></tr>
+</tbody>
 </table>
 
 
@@ -476,6 +316,8 @@ Heavy Rain
 
 
 
+<script src="js/activity-log.js"></script>
+<script src="js/dashboard.js"></script>
 <script src="js/language.js"></script>
 
 

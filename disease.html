@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Disease Scanner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriVision AI - Disease Detection</title>
     <link rel="stylesheet" href="common.css">
 </head>
-<body>
+<body class="disease-page">
 
 <div class="sidebar">
 
-    <div class="logo">🌾 AGRI AI</div>
+    <a class="logo" href="index.html" aria-label="Go to dashboard">
+        <span class="logo-mark">🌾</span>
+        <span>AgriVision AI</span>
+    </a>
     <select id="language">
         <option>English</option>
         <option>Hindi</option>
@@ -17,116 +22,120 @@
 
     <a href="index.html">🏠 Dashboard</a>
     <a href="crop.html">🌱 Crop Advisor</a>
-    <a href="disease.html">🍃 Disease Scanner</a>
+    <a href="disease.html" class="active">🍃 Disease Detection</a>
     <a href="weather.html">☁ Weather Center</a>
     <a href="analytics.html">📊 Analytics</a>
     <a href="history.html">📜 History</a>
     <a href="chatbot.html">🤖 AI Assistant</a>
-
 </div>
 
 <div class="main">
 
-    <h1>🍃 AI Disease Scanner</h1>
-
-    <br>
+    <header class="disease-page-header">
+        <div>
+            <span class="disease-eyebrow">PLANT HEALTH</span>
+            <h1>Disease Detection</h1>
+            <p>Upload a clear image of the affected leaf for an AI-assisted diagnosis.</p>
+        </div>
+        <div class="disease-header-badge">
+            <span class="status-dot"></span>
+            <div>
+                <strong>AI scanner</strong>
+                <span>Ready to analyze</span>
+            </div>
+        </div>
+    </header>
 
     <div class="disease-layout">
 
-        <!-- Upload Section -->
-
-        <div class="card">
-
-            <h2>Upload Leaf Image</h2>
-
-            <br>
-
-            <input
-                type="file"
-                id="imageInput"
-                accept="image/*"
-                onchange="previewImage(event)"
-            >
-
-            <br><br>
-
-            <img
-                id="preview"
-                width="100%"
-                style="display:none;border-radius:15px;"
-            >
-
-            <br><br>
-
-            <button onclick="analyzeImage()">
-                Analyze Image
-            </button>
-
-        </div>
-
-        <!-- Result -->
-
-        <div class="card">
-
-            <h2>Disease Analysis</h2>
-
-            <br>
-
-            <div id="analysisResult">
-
-                <h1>🌿 Waiting For Scan</h1>
-
-                <br>
-
-                <p>Upload a leaf image to begin.</p>
-
+        <div class="card disease-upload-card">
+            <div class="disease-card-heading">
+                <div class="disease-card-icon">📷</div>
+                <div>
+                    <span>Step 1</span>
+                    <h2>Upload leaf image</h2>
+                </div>
             </div>
 
+            <label class="disease-upload-area" for="imageInput">
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/*"
+                    onchange="previewImage(event)"
+                >
+                <div class="upload-placeholder" id="uploadPlaceholder">
+                    <div class="upload-icon">↑</div>
+                    <strong>Choose a leaf image</strong>
+                    <span>JPEG or PNG · clear close-up recommended</span>
+                </div>
+                <img id="preview" alt="Selected leaf preview">
+            </label>
+
+            <button class="disease-analyze-button" onclick="analyzeImage()">
+                <span>Analyze image</span>
+                <span aria-hidden="true">→</span>
+            </button>
+        </div>
+
+        <div class="card disease-result-card">
+            <div class="disease-card-heading disease-result-heading">
+                <div class="disease-card-icon result-icon">🔬</div>
+                <div>
+                    <span>AI result</span>
+                    <h2>Disease analysis</h2>
+                </div>
+            </div>
+
+            <div id="analysisResult" class="disease-result-content">
+                <div class="disease-empty-state">
+                    <div class="empty-state-icon">🌿</div>
+                    <h3>Waiting for a scan</h3>
+                    <p>Upload a clear image to receive a plant health assessment.</p>
+                </div>
+            </div>
         </div>
 
     </div>
 
-    <div class="section">
-
-        <h2>Recommended Treatment</h2>
-
-        <br>
-
-        <div id="treatment">
-
-            <p>No treatment recommendation yet.</p>
-
+    <div class="disease-bottom-grid">
+        <div class="section disease-treatment-card">
+            <div class="disease-section-heading">
+                <span>CARE GUIDE</span>
+                <h2>Recommended treatment</h2>
+            </div>
+            <div id="treatment">
+                <p class="treatment-empty">Treatment guidance will appear after analysis.</p>
+            </div>
         </div>
 
-    </div>
-
-    <div class="section">
-
-        <h2>Recent Scans</h2>
-
-        <br>
-
-        <table width="100%">
-            <tr>
-                <th>Date</th>
-                <th>Disease</th>
-                <th>Severity</th>
-            </tr>
-
-            <tr>
-                <td>20-06-2026</td>
-                <td>Tomato Early Blight</td>
-                <td>Medium</td>
-            </tr>
-
-            <tr>
-                <td>18-06-2026</td>
-                <td>Healthy Leaf</td>
-                <td>Low</td>
-            </tr>
-
-        </table>
-
+        <div class="section disease-recent-card">
+            <div class="disease-section-heading">
+                <span>HISTORY</span>
+                <h2>Recent scans</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Disease</th>
+                        <th>Severity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>20 Jun 2026</td>
+                        <td>Tomato early blight</td>
+                        <td><span class="severity-chip severity-medium">Medium</span></td>
+                    </tr>
+                    <tr>
+                        <td>18 Jun 2026</td>
+                        <td>Healthy leaf</td>
+                        <td><span class="severity-chip severity-low">Low</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>

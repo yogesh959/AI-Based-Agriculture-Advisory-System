@@ -5,11 +5,15 @@ function previewImage(event){
 
     selectedImage = event.target.files[0];
 
+    if (!selectedImage) return;
+
     let image = document.getElementById("preview");
+    let placeholder = document.getElementById("uploadPlaceholder");
 
     image.src = URL.createObjectURL(selectedImage);
 
     image.style.display = "block";
+    if (placeholder) placeholder.style.display = "none";
 }
 
 
@@ -31,12 +35,11 @@ async function analyzeImage(){
 
 
     resultBox.innerHTML = `
-
-        <h1>🤖 AI Analyzing...</h1>
-
-        <p>Please wait while AI checks the leaf.</p>
-
-    `;
+        <div class="disease-loading-state">
+            <div class="disease-loader"></div>
+            <h3>Analyzing leaf image</h3>
+            <p>Checking visual patterns and plant health indicators...</p>
+        </div>`;
 
 
 
@@ -74,30 +77,30 @@ async function analyzeImage(){
 
 
 
+        const safeAnswer = String(data.answer || "No analysis returned.")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
         resultBox.innerHTML = `
-
-            <h2>🌱 AI Disease Report</h2>
-
-            <br>
-
-            <p>${(data.answer || "No analysis returned.").replace(/\n/g,"<br>")}</p>
-
-        `;
+            <div class="disease-report">
+                <div class="disease-report-status">
+                    <span>ANALYSIS COMPLETE</span>
+                    <strong>AI report</strong>
+                </div>
+                <p>${safeAnswer.replace(/\n/g,"<br>")}</p>
+            </div>`;
 
 
 
         document.getElementById("treatment").innerHTML = `
-
-            <h3>🤖 AI Recommendation</h3>
-
-            <br>
-
-            <p>
-            Follow the treatment and prevention steps
-            mentioned in the AI report.
-            </p>
-
-        `;
+            <div class="treatment-guidance">
+                <div class="treatment-icon">✓</div>
+                <div>
+                    <h3>AI care guidance</h3>
+                    <p>Review the treatment and prevention steps in the analysis report before applying any product.</p>
+                </div>
+            </div>`;
 
 
 
