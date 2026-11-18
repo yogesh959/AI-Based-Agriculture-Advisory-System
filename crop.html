@@ -1,118 +1,364 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Crop Advisor</title>
-    <link rel="stylesheet" href="common.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AgriVision AI - Crop Advisor</title>
+
+<link rel="stylesheet" href="common.css">
+
 </head>
+
+
 <body>
+
 
 <div class="sidebar">
 
-    <div class="logo">🌾 AGRI AI</div>
-    <select id="language">
-        <option>English</option>
-        <option>Hindi</option>
-        <option>Telugu</option>
-    </select>
 
-    <a href="index.html">🏠 Dashboard</a>
-    <a href="crop.html">🌱 Crop Advisor</a>
-    <a href="disease.html">🍃 Disease Scanner</a>
-    <a href="weather.html">☁ Weather Center</a>
-    <a href="analytics.html">📊 Analytics</a>
-    <a href="history.html">📜 History</a>
-    <a href="chatbot.html">🤖 AI Assistant</a>
+<div class="logo">
+🌾 AgriVision AI
+</div>
+
+
+
+<select id="language">
+
+<option>English</option>
+<option>Hindi</option>
+<option>Telugu</option>
+
+</select>
+
+
+
+<a href="index.html">
+🏠 Dashboard
+</a>
+
+
+<a href="crop.html">
+🌱 Crop Intelligence
+</a>
+
+
+<a href="disease.html">
+🍃 Disease Detection
+</a>
+
+
+<a href="weather.html">
+🌦 Weather Insights
+</a>
+
+
+<a href="analytics.html">
+📊 Analytics
+</a>
+
+
+<a href="history.html">
+📜 Reports
+</a>
+
+
+<a href="chatbot.html">
+🤖 AI Assistant
+</a>
+
+
 
 </div>
+
+
+
+
 
 <div class="main">
 
-    <h1>🌱 Crop Recommendation Engine</h1>
-    <br>
 
-    <div class="crop-container">
+<h1>
+🌱 AI Crop Advisor
+</h1>
 
-        <!-- Input Form -->
 
-        <div class="card">
+<p>
+Get crop recommendations using simple farm information
+</p>
 
-            <h2>Farm Details</h2>
-            <br>
 
-            <input type="number" id="n" placeholder="Nitrogen (N)">
-            <input type="number" id="p" placeholder="Phosphorus (P)">
-            <input type="number" id="k" placeholder="Potassium (K)">
-            <input type="number" id="temp" placeholder="Temperature">
-            <input type="number" id="humidity" placeholder="Humidity">
-            <input type="number" id="ph" placeholder="pH Value">
-            <input type="number" id="rainfall" placeholder="Rainfall">
+<br>
 
-            <button onclick="predictCrop()">
-                Predict Crop
-            </button>
 
-        </div>
 
-        <!-- Result Card -->
+<div class="crop-container">
 
-        <div class="card result-card">
 
-            <h2>AI Recommendation</h2>
 
-            <div id="result">
 
-                <h1>🌾 Rice</h1>
 
-                <br>
+<!-- FARM INPUT -->
 
-                <p>Confidence: 96%</p>
 
-                <br>
+<div class="card">
 
-                <p>
-                    Suitable due to current
-                    temperature and rainfall.
-                </p>
 
-            </div>
+<h2>
+👨‍🌾 Farm Details
+</h2>
 
-        </div>
 
-    </div>
+<br>
 
-    <div class="section">
 
-        <h2>Previous Predictions</h2>
 
-        <br>
+<label>
+🌍 Soil Type
+</label>
 
-        <table width="100%">
-            <tr>
-                <th>Date</th>
-                <th>Crop</th>
-                <th>Confidence</th>
-            </tr>
 
-            <tr>
-                <td>20-06-2026</td>
-                <td>Rice</td>
-                <td>96%</td>
-            </tr>
+<select id="soil">
 
-            <tr>
-                <td>18-06-2026</td>
-                <td>Maize</td>
-                <td>92%</td>
-            </tr>
-        </table>
+<option>Black Soil</option>
+<option>Red Soil</option>
+<option>Sandy Soil</option>
+<option>Clay Soil</option>
+<option>Loamy Soil</option>
 
-    </div>
+</select>
+
+
+
+<label>
+💧 Water Availability
+</label>
+
+
+<select id="water">
+
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+
+</select>
+
+
+
+
+
+<label>
+🌦 Season
+</label>
+
+
+<select id="season">
+
+<option>Monsoon</option>
+<option>Summer</option>
+<option>Winter</option>
+
+</select>
+
+
+
+
+
+<label>
+🌾 Previous Crop
+</label>
+
+
+<select id="previous">
+
+<option>Rice</option>
+<option>Cotton</option>
+<option>Maize</option>
+<option>Wheat</option>
+<option>Other</option>
+
+</select>
+
+
+
+
+
+<label>
+📍 Village / Location
+</label>
+
+
+<input 
+type="text"
+id="location"
+placeholder="Enter your village name"
+>
+
+
+
+
+<button onclick="predictCrop()">
+
+🌱 Analyze Farm
+
+</button>
+
+
 
 </div>
 
+
+
+
+
+
+
+
+<!-- RESULT -->
+
+
+<div class="card ai-result-card">
+
+
+<div id="result">
+
+
+<div class="ai-header">
+
+<span>
+🤖
+</span>
+
+<h2>
+AI Crop Recommendation
+</h2>
+
+</div>
+
+
+<div class="crop-result">
+
+
+<div class="crop-icon">
+🌾
+</div>
+
+
+<div>
+
+<h1>
+Rice
+</h1>
+
+<p class="badge">
+Best Match
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<div class="confidence">
+
+<p>
+AI Confidence
+</p>
+
+
+<div class="progress">
+
+<div class="progress-fill"></div>
+
+</div>
+
+
+<h3>
+94%
+</h3>
+
+
+</div>
+
+
+
+
+<div class="reason-box">
+
+<h3>
+💡 Why this crop?
+</h3>
+
+
+<p>
+Suitable based on soil condition,
+water availability and season.
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="section">
+
+
+<h2>
+📜 Previous Recommendations
+</h2>
+
+
+<br>
+
+
+
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Crop</th>
+<th>Confidence</th>
+<th>Farm conditions</th>
+</tr>
+</thead>
+<tbody id="cropHistoryRows">
+<tr><td colspan="4">Loading crop history...</td></tr>
+</tbody>
+</table>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
 <script src="js/crop.js"></script>
 
-<script type="module" src="js/firebase-config.js"></script>
 <script src="js/language.js"></script>
+
 </body>
+
 </html>

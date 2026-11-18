@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>AI Assistant</title>
 
-    <!-- IMPORTANT: your main CSS -->
     <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="chatbot.css">
 </head>
 
 <body>
@@ -18,6 +18,12 @@
         🌾 AGRI AI
     </div>
 
+    <select id="language" aria-label="Language">
+        <option>English</option>
+        <option>Hindi</option>
+        <option>Telugu</option>
+    </select>
+
     <a href="index.html">🏠 Dashboard</a>
     <a href="crop.html">🌱 Crop Advisor</a>
     <a href="disease.html">🍃 Disease Scanner</a>
@@ -28,79 +34,64 @@
 
 </div>
 
-<!-- MAIN AREA -->
-<div class="main">
+<main class="main chat-main">
+    <header class="chat-page-header">
+        <div>
+            <p class="eyebrow">FIELD SUPPORT / AI ASSISTANT</p>
+            <h1>Ask about your farm</h1>
+            <p class="page-description">Practical guidance for crops, pests, and plant health.</p>
+        </div>
+        <span class="assistant-status"><span></span> Agriculture assistant</span>
+    </header>
 
-    <h1>🌾 AI Agriculture Assistant</h1>
-
-    <div class="section">
-
-        <!-- CHAT BOX (now uses your global CSS) -->
-        <div class="chat-box" id="chatBox"></div>
-
-        <input type="text" id="userInput" placeholder="Ask something...">
-
-        <button onclick="sendMessage()">Send</button>
-
-    </div>
-
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const inputBox = document.getElementById("userInput");
-    const chat = document.getElementById("chatBox");
-
-    window.sendMessage = function () {
-
-        let input = inputBox.value.trim();
-        if (input === "") return;
-
-        // USER MESSAGE
-        chat.innerHTML += `
-            <div class="message user">
-                ${input}
+    <section class="chat-workspace" aria-label="Agriculture assistant conversation">
+        <div class="chat-topline">
+            <div class="assistant-avatar" aria-hidden="true">A</div>
+            <div>
+                <strong>Agri assistant</strong>
+                <span>Crop and field guidance</span>
             </div>
-        `;
+        </div>
 
-        inputBox.value = "";
-
-        // BOT MESSAGE
-        chat.innerHTML += `
-            <div class="message bot">
-                🤖 Typing...
+        <div class="chat-box" id="chatBox" role="log" aria-live="polite" aria-relevant="additions">
+            <div class="welcome-message" id="welcomeMessage">
+                <p class="welcome-kicker">YOUR FIELD, YOUR QUESTIONS</p>
+                <h2>What are you seeing in the field?</h2>
+                <p>Describe a crop concern, ask about growing conditions, or add a photo for a visual check.</p>
+                <div class="suggestion-list" aria-label="Suggested questions">
+                    <button type="button" class="suggestion" data-prompt="How can I tell if my tomato plants are getting too much water?">Check watering symptoms <span aria-hidden="true">&#8599;</span></button>
+                    <button type="button" class="suggestion" data-prompt="What should I look for when checking a crop leaf for disease?">Inspect a crop leaf <span aria-hidden="true">&#8599;</span></button>
+                    <button type="button" class="suggestion" data-prompt="How can I improve soil health before planting?">Improve soil health <span aria-hidden="true">&#8599;</span></button>
+                </div>
             </div>
-        `;
+        </div>
 
-        let bots = document.querySelectorAll(".bot");
-        let lastBot = bots[bots.length - 1];
+        <form class="chat-composer" id="chatForm">
+            <div class="attachment-preview" id="attachmentPreview" hidden>
+                <img id="previewImage" alt="Selected crop photo preview">
+                <span id="previewName"></span>
+                <button type="button" id="removeImage" class="remove-image" aria-label="Remove selected image" title="Remove image">&times;</button>
+            </div>
+            <div class="composer-row">
+                <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+                <button type="button" class="attach-button" id="attachButton" aria-label="Attach a crop photo" title="Attach a crop photo">
+                    <span aria-hidden="true">+</span><span class="attach-label">Photo</span>
+                </button>
+                <input type="text" id="userInput" placeholder="Ask a question about your farm..." autocomplete="off" aria-label="Your message">
+                <button type="submit" class="send-button" id="sendButton" aria-label="Send message" title="Send message">
+                    <span aria-hidden="true">&#8593;</span>
+                </button>
+            </div>
+            <div class="composer-footer">
+                <span id="composerStatus">Photos: JPG, PNG, WebP, GIF up to 10 MB</span>
+                <span>AI responses can be imperfect. Confirm important decisions locally.</span>
+            </div>
+        </form>
+    </section>
+</main>
 
-        setTimeout(() => {
-            lastBot.innerHTML = getAIResponse(input.toLowerCase());
-            chat.scrollTop = chat.scrollHeight;
-        }, 1000);
-
-        chat.scrollTop = chat.scrollHeight;
-    };
-
-    function getAIResponse(question) {
-
-        if (question.includes("rice")) return "🌾 Rice grows well in clay soil.";
-        if (question.includes("cotton")) return "🌱 Cotton grows in black soil.";
-        if (question.includes("fertilizer")) return "🧪 Use NPK fertilizer.";
-        if (question.includes("irrigation")) return "💧 Irrigate morning/evening.";
-        if (question.includes("rain")) return "☁ Check weather first.";
-        if (question.includes("disease")) return "🍃 Use Disease Scanner.";
-        if (question.includes("soil")) return "🌍 Soil testing is important.";
-        if (question.includes("weather")) return "🌦 Monitor weather daily.";
-        if (question.includes("hello") || question.includes("hi")) return "👨‍🌾 Hello Farmer!";
-
-        return "🤖 I can help with crops, soil, irrigation, weather.";
-    }
-
-});
-</script>
+<script src="js/language.js"></script>
+<script src="js/chatbot.js"></script>
 
 </body>
 </html>

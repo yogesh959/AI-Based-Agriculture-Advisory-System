@@ -1,53 +1,79 @@
+/* =====================================
+   AgriVision AI - Professional Theme
+   Hybrid Dashboard Design
+===================================== */
+
+
+/* COLOR SYSTEM */
+
 :root{
-    --bg:#071018;
-    --sidebar:#0b1220;
-    --card:rgba(15,23,42,0.75);
 
-    --green:#00e676;
-    --blue:#00d4ff;
-    --purple:#8b5cf6;
-    --orange:#ff9800;
-    --red:#ff5252;
+    --primary:#16a34a;
+    --primary-light:#dcfce7;
+    --primary-dark:#15803d;
 
-    --white:#ffffff;
-    --text:#dbeafe;
+    --secondary:#0f172a;
 
-    --border:rgba(255,255,255,0.08);
+    --background:#f8fafc;
+
+    --card:#ffffff;
+
+    --text:#1e293b;
+
+    --muted:#64748b;
+
+    --border:#e2e8f0;
+
+    --warning:#f59e0b;
+
+    --danger:#ef4444;
+
+    --success:#22c55e;
+
 }
 
+
+/* GLOBAL RESET */
+
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
 }
 
-body{
-    background:
-    radial-gradient(circle at top right,#00d4ff15,transparent 35%),
-    radial-gradient(circle at bottom left,#00e67615,transparent 35%),
-    var(--bg);
 
-    color:var(--white);
+body{
+
+    background:var(--background);
+
+    color:var(--text);
+
+    min-height:100vh;
 
     display:flex;
 
-    min-height:100vh;
 }
 
-/* SIDEBAR */
+
+/* =====================================
+        SIDEBAR
+===================================== */
+
 
 .sidebar{
 
-    width:270px;
+    width:260px;
 
     height:100vh;
 
-    background:rgba(11,18,32,0.95);
-
-    backdrop-filter:blur(20px);
-
-    border-right:1px solid rgba(255,255,255,0.05);
+    background:#0f172a;
 
     position:fixed;
 
@@ -55,182 +81,778 @@ body{
 
     top:0;
 
-    padding:25px;
+    padding:25px 20px;
 
-    overflow-y:auto;
+    display:flex;
+
+    flex-direction:column;
+
+    box-shadow:
+    4px 0 20px rgba(0,0,0,0.08);
+
 }
+
+
+/* LOGO */
+
 
 .logo{
 
-    font-size:30px;
+    color:white;
 
-    font-weight:800;
+    font-size:26px;
 
-    background:
-    linear-gradient(
-    90deg,
-    var(--green),
-    var(--blue)
-    );
+    font-weight:700;
 
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-
-    margin-bottom:40px;
-
-    text-align:center;
-}
-
-.sidebar a{
+    margin-bottom:35px;
 
     display:flex;
 
     align-items:center;
 
+    gap:10px;
+
+}
+
+
+.logo span{
+
+    color:#22c55e;
+
+}
+
+
+
+/* LANGUAGE */
+
+
+#language{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:25px;
+
+    border-radius:10px;
+
+    border:1px solid #334155;
+
+    background:#1e293b;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+
+
+/* SIDEBAR LINKS */
+
+
+.sidebar a{
+
     text-decoration:none;
 
     color:#cbd5e1;
 
-    padding:15px 18px;
+    padding:13px 15px;
 
-    margin-bottom:10px;
+    margin-bottom:8px;
 
-    border-radius:14px;
+    border-radius:12px;
 
-    transition:0.35s;
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    transition:0.3s;
+
+    font-size:15px;
+
 }
+
+
 
 .sidebar a:hover{
 
-    background:
-    linear-gradient(
-    90deg,
-    var(--green),
-    var(--blue)
-    );
+    background:#16a34a;
 
-    color:black;
+    color:white;
 
-    transform:translateX(6px);
+    transform:translateX(5px);
+
 }
 
-/* MAIN */
+
+
+/* ACTIVE PAGE */
+
+
+.sidebar a.active{
+
+    background:#16a34a;
+
+    color:white;
+
+}
+
+
+
+/* =====================================
+            MAIN AREA
+===================================== */
+
 
 .main{
 
-    margin-left:270px;
+    margin-left:260px;
 
     width:100%;
 
-    padding:35px;
+    padding:30px 40px;
+
 }
+
+
+
+/* HEADINGS */
+
 
 h1{
 
-    font-size:38px;
+    font-size:34px;
 
-    margin-bottom:10px;
+    color:#0f172a;
+
+    margin-bottom:8px;
+
 }
+
 
 h2{
 
-    color:white;
+    color:#0f172a;
+
+    font-size:22px;
+
 }
+
+
+h3{
+
+    color:#334155;
+
+}
+
 
 p{
 
-    color:#cbd5e1;
+    color:var(--muted);
+
+    line-height:1.6;
+
 }
 
-/* DASHBOARD CARDS */
+
+/* =====================================
+        TOP HEADER
+===================================== */
+
+
+.top-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+
+.search-box{
+
+    width:350px;
+
+    padding:13px 18px;
+
+    border-radius:12px;
+
+    border:1px solid var(--border);
+
+    background:white;
+
+    outline:none;
+
+}
+
+
+.search-box:focus{
+
+    border-color:var(--primary);
+
+}
+
+
+.profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.profile img{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+/* =====================================
+        DASHBOARD CARDS
+===================================== */
+
 
 .cards{
 
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
+    repeat(auto-fit,minmax(230px,1fr));
 
-    gap:20px;
+    gap:22px;
+
+    margin-top:25px;
+
 }
+
+
 
 .card{
 
     background:var(--card);
 
-    backdrop-filter:blur(20px);
-
     border:1px solid var(--border);
 
-    border-radius:24px;
+    border-radius:18px;
 
     padding:25px;
 
     box-shadow:
-    0 10px 30px rgba(0,0,0,0.25);
+    0 8px 25px rgba(15,23,42,0.06);
 
     transition:0.3s;
+
 }
+
+
 
 .card:hover{
 
-    transform:translateY(-8px);
+    transform:translateY(-5px);
 
     box-shadow:
-    0 20px 40px rgba(0,212,255,0.15);
+    0 15px 35px rgba(15,23,42,0.12);
+
 }
+
+
 
 .card h3{
 
-    color:#94a3b8;
+    color:var(--muted);
+
+    font-size:15px;
 
     margin-bottom:15px;
+
 }
+
+
 
 .card h2{
 
     font-size:32px;
 
-    color:white;
+    color:#0f172a;
+
+    margin-bottom:8px;
+
 }
 
-/* SECTION */
+
+
+/* =====================================
+        SECTIONS
+===================================== */
+
 
 .section{
 
-    margin-top:25px;
-
-    background:var(--card);
-
-    backdrop-filter:blur(20px);
+    background:white;
 
     border:1px solid var(--border);
 
+    border-radius:20px;
+
     padding:25px;
 
-    border-radius:24px;
+    margin-top:25px;
+
+    box-shadow:
+
+    0 8px 25px rgba(15,23,42,0.05);
+
 }
 
-/* CROP PAGE */
 
-.crop-container{
 
-    display:grid;
+/* =====================================
+        BUTTONS
+===================================== */
 
-    grid-template-columns:1fr 1fr;
 
-    gap:20px;
+button{
+
+    border:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:14px 22px;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    margin:5px;
+
 }
 
-/* INPUTS */
 
-input{
+
+button:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-3px);
+
+}
+
+
+
+/* ACTION CARDS */
+
+
+.action-card{
+
+    background:var(--primary-light);
+
+    padding:22px;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+
+
+.action-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+
+/* =====================================
+        INPUTS
+===================================== */
+
+
+input,
+select,
+textarea{
 
     width:100%;
 
-    padding:16px;
+    padding:14px;
 
     margin:10px 0;
+
+    border-radius:12px;
+
+    border:1px solid var(--border);
+
+    background:white;
+
+    color:var(--text);
+
+    outline:none;
+
+}
+
+
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:var(--primary);
+
+}
+
+
+
+/* =====================================
+        RESULT CARD
+===================================== */
+
+
+.result-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    border:1px solid var(--border);
+
+    text-align:center;
+
+}
+
+
+
+/* =====================================
+        TABLE
+===================================== */
+
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:15px;
+
+}
+
+
+
+th{
+
+    background:#f1f5f9;
+
+    color:#334155;
+
+    text-align:left;
+
+}
+
+
+
+th,
+td{
+
+    padding:15px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+
+tr:hover{
+
+    background:#f8fafc;
+
+}
+
+
+
+/* =====================================
+        STATUS COLORS
+===================================== */
+
+
+.severity-low{
+
+    color:var(--success);
+
+    font-weight:700;
+
+}
+
+
+.severity-medium{
+
+    color:var(--warning);
+
+    font-weight:700;
+
+}
+
+
+.severity-high{
+
+    color:var(--danger);
+
+    font-weight:700;
+
+}
+
+
+
+/* =====================================
+        CHARTS
+===================================== */
+
+
+.chart-container{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    border:1px solid var(--border);
+
+    height:350px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+/* =====================================
+        CHATBOT
+===================================== */
+
+
+.chat-box{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    height:500px;
+
+    overflow-y:auto;
+
+}
+
+
+
+.message{
+
+    max-width:75%;
+
+    padding:14px;
+
+    margin:12px 0;
+
+    border-radius:15px;
+
+}
+
+
+
+.user{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+    margin-left:auto;
+
+    text-align:right;
+
+}
+
+
+
+.bot{
+
+    background:#f1f5f9;
+
+    color:#334155;
+
+}
+
+
+
+/* CHAT INPUT */
+
+
+.chat-input{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
+
+
+.chat-input input{
+
+    flex:1;
+
+}
+
+
+
+/* =====================================
+        ANIMATIONS
+===================================== */
+
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+.card,
+.section{
+
+    animation:fadeIn .5s ease;
+
+}
+
+
+
+/* =====================================
+        RESPONSIVE
+===================================== */
+
+
+@media(max-width:900px){
+
+
+    .sidebar{
+
+        width:220px;
+
+    }
+
+
+    .main{
+
+        margin-left:220px;
+
+        padding:25px;
+
+    }
+
+
+}
+
+
+
+@media(max-width:700px){
+
+
+    .sidebar{
+
+        display:none;
+
+    }
+
+
+    .main{
+
+        margin-left:0;
+
+    }
+
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+}
+/* FARMER FORM ELEMENTS */
+
+label{
+
+    display:block;
+
+    color:#cbd5e1;
+
+    margin-top:15px;
+
+    margin-bottom:8px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+
+
+select{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-bottom:10px;
 
     background:#0f172a;
 
@@ -240,62 +862,135 @@ input{
 
     color:white;
 
+    font-size:15px;
+
     outline:none;
-
-    transition:.3s;
-}
-
-input:focus{
-
-    border-color:var(--blue);
-
-    box-shadow:
-    0 0 15px rgba(0,212,255,0.3);
-}
-
-/* BUTTONS */
-
-button{
-
-    width:100%;
-
-    padding:15px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:
-    linear-gradient(
-    135deg,
-    var(--green),
-    var(--blue)
-    );
-
-    color:#071018;
-
-    font-weight:700;
-
-    font-size:16px;
 
     cursor:pointer;
 
     transition:0.3s;
 
-    margin-top:10px;
 }
 
-button:hover{
 
-    transform:translateY(-3px);
+
+select:hover,
+select:focus{
+
+    border-color:var(--blue);
 
     box-shadow:
-    0 10px 25px rgba(0,212,255,0.35);
+    0 0 15px rgba(0,212,255,0.25);
+
 }
 
-/* RESULT CARD */
 
-.result-card{
+
+/* AI RESULT ANIMATION */
+
+
+#result{
+
+    animation:fadeIn 0.6s ease;
+
+}
+
+
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* RESULT CROP TITLE */
+
+
+#result h1{
+
+    background:
+    linear-gradient(
+    90deg,
+    var(--green),
+    var(--blue)
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+/* AI CROP RESULT CARD */
+
+
+.ai-result-card{
+
+    min-height:520px;
+
+}
+
+
+
+.ai-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:35px;
+
+}
+
+
+
+.ai-header span{
+
+    font-size:35px;
+
+}
+
+
+
+.crop-result{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+
+
+.crop-icon{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
 
     display:flex;
 
@@ -303,108 +998,8 @@ button:hover{
 
     justify-content:center;
 
-    text-align:center;
-}
+    font-size:45px;
 
-/* DISEASE PAGE */
-
-.disease-layout{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:20px;
-}
-
-#preview{
-
-    width:100%;
-
-    max-height:320px;
-
-    object-fit:cover;
-
-    border-radius:20px;
-
-    border:2px solid rgba(255,255,255,0.1);
-}
-
-/* TABLES */
-
-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    overflow:hidden;
-
-    border-radius:15px;
-}
-
-th{
-
-    background:#162235;
-
-    color:var(--green);
-}
-
-th,td{
-
-    padding:15px;
-
-    text-align:left;
-
-    border-bottom:
-    1px solid rgba(255,255,255,0.06);
-}
-
-/* SEVERITY */
-
-.severity-low{
-
-    color:#00e676;
-
-    font-weight:bold;
-}
-
-.severity-medium{
-
-    color:#ff9800;
-
-    font-weight:bold;
-}
-
-.severity-high{
-
-    color:#ff5252;
-
-    font-weight:bold;
-}
-
-/* CHATBOT */
-
-.chat-box{
-    background: transparent;
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 20px;
-    height: 500px;
-    overflow-y: auto;
-}
-
-.message{
-
-    padding:14px;
-
-    margin:12px 0;
-
-    border-radius:14px;
-}
-
-.user{
 
     background:
     linear-gradient(
@@ -413,96 +1008,202 @@ th,td{
     var(--blue)
     );
 
-    color:black;
-
-    text-align:right;
 }
 
-.bot{
 
-    background:#1e293b;
 
-    color:white;
+.crop-result h1{
+
+    font-size:42px;
+
 }
 
-/* RESPONSIVE */
 
-@media(max-width:900px){
 
-    .sidebar{
+.badge{
 
-        width:220px;
-    }
+    display:inline-block;
 
-    .main{
-
-        margin-left:220px;
-    }
-
-    .crop-container,
-    .disease-layout{
-
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:768px){
-
-    .sidebar{
-
-        display:none;
-    }
-
-    .main{
-
-        margin-left:0;
-    }
-
-    .cards{
-
-        grid-template-columns:1fr;
-    }
-}
-/* ANALYTICS */
-
-.chart-container{
-
-    background:#101b2d;
-
-    padding:20px;
+    padding:6px 15px;
 
     border-radius:20px;
 
-    margin-bottom:20px;
+    background:#00e67622;
 
-    height:350px;
+    color:#00e676;
+
+    margin-top:10px;
+
 }
 
-.chart-container canvas{
 
-    width:100% !important;
 
-    height:300px !important;
+.confidence{
+
+    margin-top:25px;
+
 }
-#language{
+
+
+
+.progress{
+
+    height:12px;
+
+    background:#1e293b;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:15px 0;
+
+}
+
+
+
+.progress-fill{
+
+    height:100%;
+
+    width:94%;
+
+    background:
+    linear-gradient(
+    90deg,
+    var(--green),
+    var(--blue)
+    );
+
+    border-radius:20px;
+
+}
+
+
+
+.reason-box{
+
+    margin-top:35px;
+
+    padding:20px;
+
+    background:#0f172a;
+
+    border-radius:18px;
+
+    border:1px solid var(--border);
+
+}
+
+
+
+.reason-box h3{
+
+    color:var(--green);
+
+    margin-bottom:10px;
+
+}
+/* DISEASE SCANNER PREMIUM UI */
+
+
+.upload-area{
+
+    border:2px dashed rgba(255,255,255,0.15);
+
+    padding:25px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+}
+
+
+
+.upload-area input{
+
+    background:#0f172a;
+
+}
+
+
+
+#preview{
 
     width:100%;
 
+    max-height:300px;
+
+    object-fit:cover;
+
+    margin-top:20px;
+
+    border-radius:20px;
+
+}
+
+
+
+.disease-result-card{
+
+    min-height:450px;
+
+}
+
+
+
+.waiting-box{
+
+    text-align:center;
+
+    padding:80px 20px;
+
+}
+
+
+
+.waiting-box h1{
+
+    font-size:32px;
+
+}
+
+
+
+.treatment-card{
+
+    animation:fadeIn 0.5s ease;
+
+}
+
+
+
+#analysisResult h1{
+
+    background:
+    linear-gradient(
+    90deg,
+    var(--green),
+    var(--blue)
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+
+
+#treatment p{
+
     padding:12px;
 
-    margin-bottom:20px;
+    margin:8px 0;
 
-    border:none;
+    background:#0f172a;
 
     border-radius:12px;
 
-    background:#101b2d;
-
-    color:white;
-
-    font-size:15px;
-
-    cursor:pointer;
-
-    outline:none;
 }

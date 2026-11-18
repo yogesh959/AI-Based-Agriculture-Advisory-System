@@ -1,98 +1,378 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
+
+<title>AgriVision AI - Reports</title>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>History</title>
 <link rel="stylesheet" href="common.css">
+<style>
+	.report-table-scroll {
+		max-width: 100%;
+		overflow-x: auto;
+	}
+
+	.report-table-scroll table {
+		min-width: 680px;
+	}
+
+	.history-section-heading {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	.history-delete {
+		display: grid;
+		place-items: center;
+		width: 32px;
+		height: 32px;
+		border: 1px solid #d6dfd4;
+		border-radius: 5px;
+		background: #fff;
+		color: #9b3d35;
+		font-size: 15px;
+		cursor: pointer;
+	}
+
+	.history-delete:hover:not(:disabled) {
+		background: #fff2f0;
+		border-color: #d9a29d;
+	}
+
+	.history-delete:disabled {
+		opacity: 0.45;
+		cursor: not-allowed;
+	}
+
+	.history-selection {
+		width: 36px;
+		text-align: center;
+	}
+</style>
 </head>
+
 <body>
 
-<div class="sidebar">
+<aside class="sidebar">
+	<div class="logo">🌾 AgriVision AI</div>
+	<select id="language" aria-label="Language">
+		<option>English</option>
+		<option>Hindi</option>
+		<option>Telugu</option>
+	</select>
+	<a href="index.html">🏠 Dashboard</a>
+	<a href="crop.html">🌱 Crop Intelligence</a>
+	<a href="disease.html">🍃 Disease Scanner</a>
+	<a href="weather.html">🌦 Weather Insights</a>
+	<a href="analytics.html">📊 Analytics</a>
+	<a class="active" href="history.html">📜 Reports</a>
+	<a href="chatbot.html">🤖 AI Assistant</a>
+</aside>
 
-<div class="logo">🌾 AGRI AI</div>
-<select id="language">
-    <option>English</option>
-    <option>Hindi</option>
-    <option>Telugu</option>
-</select>
+<main class="main">
+	<h1>📜 Farm Reports</h1>
+	<p>Saved crop recommendations and disease scan results.</p>
 
-<a href="index.html">🏠 Dashboard</a>
-<a href="crop.html">🌱 Crop Advisor</a>
-<a href="disease.html">🍃 Disease Scanner</a>
-<a href="weather.html">☁ Weather Center</a>
-<a href="analytics.html">📊 Analytics</a>
-<a href="history.html">📜 History</a>
-<a href="chatbot.html">🤖 AI Assistant</a>
+	<section class="section report-table-scroll">
+		<div class="history-section-heading">
+			<h2>🌱 Crop Recommendations</h2>
+			<button type="button" class="history-delete" id="deleteCropSelected" aria-label="Delete selected crop recommendations" title="Delete selected crop recommendations" disabled>🗑</button>
+		</div>
+		<table>
+			<thead>
+				<tr><th class="history-selection"><input type="checkbox" id="selectAllCrop" aria-label="Select all crop recommendations"></th><th>Date</th><th>Crop</th><th>Confidence</th><th>Farm conditions</th></tr>
+			</thead>
+			<tbody id="cropHistoryRows">
+					<tr><td colspan="5">Loading crop history...</td></tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section class="section report-table-scroll">
+		<div class="history-section-heading">
+			<h2>🍃 Disease Scans</h2>
+			<button type="button" class="history-delete" id="deleteDiseaseSelected" aria-label="Delete selected disease scans" title="Delete selected disease scans" disabled>🗑</button>
+		</div>
+		<table>
+			<thead>
+					<tr><th class="history-selection"><input type="checkbox" id="selectAllDisease" aria-label="Select all disease scans"></th><th>Date</th><th>Photo</th><th>Question</th><th>AI analysis</th></tr>
+			</thead>
+			<tbody id="diseaseHistoryRows">
+					<tr><td colspan="5">Loading disease scan history...</td></tr>
+			</tbody>
+		</table>
+	</section>
+
+	<template>
+
+<!-- IMAGE UPLOAD CARD -->
+
+
+<div class="card upload-card">
+
+
+<h2>
+📷 Upload Leaf Image
+</h2>
+
+
+<br>
+
+
+<div class="upload-area">
+
+
+<input
+
+type="file"
+
+id="imageInput"
+
+accept="image/*"
+
+onchange="previewImage(event)"
+
+>
+
+
+
+<img
+
+id="preview"
+
+style="display:none"
+
+>
+
 
 </div>
 
-<div class="main">
 
-<h1>📜 Activity History</h1>
 
 <br>
 
-<div class="card">
 
-<h2>Crop Prediction History</h2>
+<button onclick="analyzeImage()">
+
+🤖 Analyze Leaf
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- AI RESULT CARD -->
+
+
+<div class="card disease-result-card">
+
+
+<div id="analysisResult">
+
+
+<div class="ai-header">
+
+
+<span>
+🤖
+</span>
+
+
+<h2>
+AI Diagnosis
+</h2>
+
+
+</div>
+
+
+
+
+<div class="waiting-box">
+
+
+<h1>
+🌿 Ready To Scan
+</h1>
+
+
+<p>
+Upload a leaf image to start AI analysis.
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- TREATMENT -->
+
+
+<div class="section treatment-card">
+
+
+<h2>
+🌿 AI Treatment Recommendation
+</h2>
+
 
 <br>
 
-<table width="100%">
-<tr>
-<th>Date</th>
-<th>Prediction</th>
-<th>Confidence</th>
-</tr>
+
+
+<div id="treatment">
+
+
+<p>
+No treatment recommendation yet.
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- HISTORY -->
+
+
+<div class="section">
+
+
+<h2>
+📜 Recent Disease Scans
+</h2>
+
+
+<br>
+
+
+
+<table>
+
 
 <tr>
-<td>20-06-2026</td>
-<td>Rice</td>
-<td>96%</td>
+
+<th>
+Date
+</th>
+
+
+<th>
+Disease
+</th>
+
+
+<th>
+Severity
+</th>
+
+
 </tr>
 
+
+
+
 <tr>
-<td>19-06-2026</td>
-<td>Maize</td>
-<td>91%</td>
+
+<td>
+20-06-2026
+</td>
+
+
+<td>
+Tomato Early Blight
+</td>
+
+
+<td class="severity-medium">
+Medium
+</td>
+
+
 </tr>
+
+
+
+<tr>
+
+<td>
+18-06-2026
+</td>
+
+
+<td>
+Healthy Leaf
+</td>
+
+
+<td class="severity-low">
+Low
+</td>
+
+
+</tr>
+
+
+
 </table>
 
-</div>
 
-<br>
-
-<div class="card">
-
-<h2>Disease Scan History</h2>
-
-<br>
-
-<table width="100%">
-<tr>
-<th>Date</th>
-<th>Disease</th>
-<th>Severity</th>
-</tr>
-
-<tr>
-<td>20-06-2026</td>
-<td>Healthy Leaf</td>
-<td>Low</td>
-</tr>
-
-<tr>
-<td>18-06-2026</td>
-<td>Early Blight</td>
-<td>Medium</td>
-</tr>
-</table>
 
 </div>
 
+
+
+
+
+
 </div>
 
-<script type="module" src="js/firebase-config.js"></script>
+
+
+
+
+
+	</template>
+
+<script src="js/history.js"></script>
+
+<script src="js/language.js"></script>
+
+</main>
+
+
 </body>
+
 </html>
